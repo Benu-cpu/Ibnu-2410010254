@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan HTML/CSS/JAVASCRIPT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Baris 1: Header -->
+    <header class="header">
+        <h1 class="header-title">Template Admin</h1>
+        <div class="user-info">
+            <span>Selamat datang, Admin!</span>
+            <a href="#" class="logout-btn">Logout</a>
+        </div>
+    </header>
+    <!-- Baris 2: Menu dan Konten -->
+    <div class="container">
+        <!-- Baris 2 Kolum 1 : Menu -->
+        <aside class="sidebar">
+            <nav>
+                <h2 class="sidebar-title">Menu Utama</h2>
+                <ul>
+                    <li><a href="#" class="menu-item">Dashboard</a></li>
+                    <li><a href="#" class="menu-item">Users</a></li>
+                    <li><a href="#" class="menu-item">Products</a></li>
+                    <li><a href="#" class="menu-item">Reports</a></li>
+                    <li><a href="#" class="menu-item">Settings</a></li>
+                    <li><a href="#" class="menu-item">About</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Baris 2 Kolum 2 : Konten -->
+        <main class="main-content">
+            <h2 class="content-title">Dashboard</h2>
+            <div class="content-wrapper"> 
+                <p>Selamat datang di Dashboard Admin</p>
+                <div class="stats-grid">
+                    <div class="stat-card card-blue">
+                        <h3>Total Users</h3>
+                        <p>10</p>
+                    </div>
+                    <div class="stat-card card-green">
+                        <h3>Total Products</h3>
+                        <p>567</p>
+                    </div>
+                    <div class="stat-card card-yellow">
+                        <h3>Sales Today</h3>
+                        <p>34</p>
+                    </div>
+                </div>
+                <br />
+                <hr />
+                <p id="paragrafTarget">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro dolores repudiandae quos, eos ipsam illo quisquam vitae similique esse.
+                </p>
+                <button id="tombolUbah" class="logout-btn">Ubah Teks</button>
+                <br />
+                <hr />
+                <div class="galeri-container">
+                    <h2>Galeri Pemandangan</h2>
+                    <img
+                        id="gambarBesar"
+                        src="https://jw-webmagazine.com/wp-content/uploads/2023/08/Akihabara-1782x1152.jpg"
+                        alt="Gambar Pemandangan danau yang luas"
+                    />
+                    <div class="thumbnails">
+                        <img
+                            class="thumbnail"
+                            src="https://jw-webmagazine.com/wp-content/uploads/2023/08/Akihabara-1782x1152.jpg?w=100"
+                            alt="Gambar Akihabara"
+                        />
+                        <img
+                            class="thumbnail"
+                            src="https://www.gov-online.go.jp/eng/publicity/book/hlj/html/202202/img/img_08_01.jpg?w=100"
+                            alt="Shimonada Station di Jepang dengan pemandangan laut"
+                        />
+                        <img
+                            class="thumbnail"
+                            src="https://res.cloudinary.com/jnto/image/upload/c_crop,f_auto,fl_lossy,q_auto/v1/media_national_parks/filer_public/bc/2a/bc2a6584-051b-465d-a7a3-628e3125f5f4/oze_purple-iris_pywakc.jpg?w=100"
+                            alt="Looks like a heaven on earth with purple flowers and mountains 🥹"
+                        />
+                        <img
+                            class="thumbnail"
+                            src="https://photos.smugmug.com/Osaka/Osaka-Categories/i-J9MFjBv/0/L/Osaka_Districts-L.jpg?w=100"
+                            alt="Gambar pemandangan kota Osaka"
+                        />
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Baris 3: Footer -->
+    <footer class="footer">
+        <p>Copyright &copy; 2025 | Ibnu</p>
+    </footer>
+
+    <script>
+        const tombolGaya = document.getElementById("tombolUbah");
+        const paragrafGaya = document.getElementById("paragrafTarget");
+
+        tombolGaya.addEventListener("click", function () {
+            // Ubah Teksnya
+            paragrafGaya.innerHTML = "Teks dan gaya sudah diubah!";
+
+            // Ubah warnanya menjadi biru
+            paragrafGaya.style.color = "blue";
+
+            // Ubah ukuran font menjadi lebih besar
+            paragrafGaya.style.fontSize = "20px";
+
+            // Tambahkan latar belakang
+            paragrafGaya.style.backgroundColor = "#e0e0e0";
+            paragrafGaya.style.padding = "10px";
+        });
+
+        //Javascript untuk funsionalitas Galeri
+
+        // 1. pilih elemen gambar besar
+        const gambarBesar = document.getElementById("gambarBesar");
+
+        //2. pilih semua elemen gambar kecil (thumbnail)
+        const thumbnails = document.querySelectorAll(".thumbnail");
+
+        //3. Tambahkan event Listener untuk setiap gambar kecil
+        thumbnails.forEach(function (thumb) {
+            thumb.addEventListener("click", function () {
+                // Ambil URL gambar kecil yang diklik
+                const sumberGambarKecil = thumb.src;
+
+                // Ubah URL gambar besar agar sesuai dengan gambar kecil yang diklik
+                // Kita ganti bagian 'w=100' menjadi 'w=500' agar resolusinya lebih besar
+                gambarBesar.src = sumberGambarKecil.replace("w=100", "W=500");
+
+                // (Opsional) Ganti juga teks alt agar sesuai
+                gambarBesar.alt = thumb.alt;
+            });
+        });
+    </script>
+</body>
+</html>
