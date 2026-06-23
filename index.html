@@ -1,146 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latihan HTML/CSS/JAVASCRIPT</title>
+    <title>Saturnus: Permata Sistem Suria</title>
+    <!-- Tailwind CSS untuk reka bentuk UI yang moden dan responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts untuk tipografi premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk ikon yang menarik -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
 </head>
+<body class="text-slate-100 min-h-screen relative select-none">
 
-<body>
-    <!-- Baris 1: Header -->
-    <header class="header">
-        <h1 class="header-title">Template Admin</h1>
-        <div class="user-info">
-            <span>Selamat datang, Admin!</span>
-            <a href="#" class="logout-btn">Logout</a>
-        </div>
-    </header>
-    <!-- Baris 2: Menu dan Konten -->
-    <div class="container">
-        <!-- Baris 2 Kolum 1 : Menu -->
-        <aside class="sidebar">
-            <nav>
-                <h2 class="sidebar-title">Menu Utama</h2>
-                <ul>
-                    <li><a href="#" class="menu-item">Dashboard</a></li>
-                    <li><a href="#" class="menu-item">Users</a></li>
-                    <li><a href="#" class="menu-item">Products</a></li>
-                    <li><a href="#" class="menu-item">Reports</a></li>
-                    <li><a href="#" class="menu-item">Settings</a></li>
-                    <li><a href="#" class="menu-item">About</a></li>
-                </ul>
-            </nav>
-        </aside>
+    <!-- Canvas Utama untuk Rendering 3D -->
+    <canvas id="space-canvas" class="absolute inset-0 w-full h-full z-0"></canvas>
 
-        <!-- Baris 2 Kolum 2 : Konten -->
-        <main class="main-content">
-            <h2 class="content-title">Dashboard</h2>
-            <div class="content-wrapper"> 
-                <p>Selamat datang di Dashboard Admin</p>
-                <div class="stats-grid">
-                    <div class="stat-card card-blue">
-                        <h3>Total Users</h3>
-                        <p>10</p>
-                    </div>
-                    <div class="stat-card card-green">
-                        <h3>Total Products</h3>
-                        <p>567</p>
-                    </div>
-                    <div class="stat-card card-yellow">
-                        <h3>Sales Today</h3>
-                        <p>34</p>
-                    </div>
+    <!-- UI Overlay -->
+    <div class="absolute inset-0 z-10 flex flex-col justify-between p-4 md:p-8 pointer-events-none">
+        
+        <!-- Pengepala (Header) -->
+        <header class="flex justify-between items-center w-full pointer-events-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full border border-amber-300/30 flex items-center justify-center bg-amber-400/10 shadow-[0_0_15px_rgba(251,191,36,0.2)]">
+                    <i class="fa-solid fa-circle-notch text-amber-300 animate-spin" style="animation-duration: 10s;"></i>
                 </div>
-                <br />
-                <hr />
-                <p id="paragrafTarget">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro dolores repudiandae quos, eos ipsam illo quisquam vitae similique esse.
-                </p>
-                <button id="tombolUbah" class="logout-btn">Ubah Teks</button>
-                <br />
-                <hr />
-                <div class="galeri-container">
-                    <h2>Galeri Pemandangan</h2>
-                    <img
-                        id="gambarBesar"
-                        src="https://jw-webmagazine.com/wp-content/uploads/2023/08/Akihabara-1782x1152.jpg"
-                        alt="Gambar Pemandangan danau yang luas"
-                    />
-                    <div class="thumbnails">
-                        <img
-                            class="thumbnail"
-                            src="https://jw-webmagazine.com/wp-content/uploads/2023/08/Akihabara-1782x1152.jpg?w=100"
-                            alt="Gambar Akihabara"
-                        />
-                        <img
-                            class="thumbnail"
-                            src="https://www.gov-online.go.jp/eng/publicity/book/hlj/html/202202/img/img_08_01.jpg?w=100"
-                            alt="Shimonada Station di Jepang dengan pemandangan laut"
-                        />
-                        <img
-                            class="thumbnail"
-                            src="https://res.cloudinary.com/jnto/image/upload/c_crop,f_auto,fl_lossy,q_auto/v1/media_national_parks/filer_public/bc/2a/bc2a6584-051b-465d-a7a3-628e3125f5f4/oze_purple-iris_pywakc.jpg?w=100"
-                            alt="Looks like a heaven on earth with purple flowers and mountains 🥹"
-                        />
-                        <img
-                            class="thumbnail"
-                            src="https://photos.smugmug.com/Osaka/Osaka-Categories/i-J9MFjBv/0/L/Osaka_Districts-L.jpg?w=100"
-                            alt="Gambar pemandangan kota Osaka"
-                        />
-                    </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-100 to-orange-300">SATURNUS</h1>
+                    <p class="text-xs text-amber-200/50 tracking-widest uppercase font-display">Simulasi Kosmik Interaktif</p>
                 </div>
             </div>
+            
+            <!-- Butang Audio & Bantuan -->
+            <div class="flex gap-2">
+                <button id="btn-audio" class="w-10 h-10 rounded-lg glass-panel flex items-center justify-center text-amber-200/80 hover:text-amber-200 hover:border-amber-400/40 transition duration-300 active:scale-95" title="Mainkan Bunyi Ambient Angkasa">
+                    <i class="fa-solid fa-volume-xmark text-sm" id="audio-icon"></i>
+                </button>
+                <button id="btn-info-toggle" class="w-10 h-10 rounded-lg glass-panel flex items-center justify-center text-amber-200/80 hover:text-amber-200 hover:border-amber-400/40 transition duration-300 active:scale-95 md:hidden">
+                    <i class="fa-solid fa-circle-info text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Bahagian Tengah (Main Content Container) -->
+        <main class="flex-grow flex flex-col md:flex-row items-end justify-between gap-6 my-4 overflow-hidden">
+            
+            <!-- Panel Kiri: Kawalan & Interaksi -->
+            <section class="w-full md:w-80 glass-panel rounded-2xl p-5 pointer-events-auto flex flex-col gap-5 neon-shadow transform transition-all duration-300">
+                <div class="border-b border-white/5 pb-3">
+                    <h2 class="text-sm font-semibold tracking-wider text-amber-200/90 uppercase font-display flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-xs"></i> Kawalan Simulasi
+                    </h2>
+                </div>
+
+                <!-- Kawalan Kelajuan Putaran -->
+                <div class="flex flex-col gap-2">
+                    <div class="flex justify-between text-xs font-display">
+                        <span class="text-slate-400">Kelajuan Putaran</span>
+                        <span id="val-speed" class="text-amber-300">1.0x</span>
+                    </div>
+                    <input id="slider-speed" type="range" min="0" max="3" step="0.1" value="1" 
+                        class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-amber-400 focus:outline-none">
+                </div>
+
+                <!-- Kawalan Condong Paksi -->
+                <div class="flex flex-col gap-2">
+                    <div class="flex justify-between text-xs font-display">
+                        <span class="text-slate-400">Kecondongan Paksi</span>
+                        <span id="val-tilt" class="text-amber-300">26.7°</span>
+                    </div>
+                    <input id="slider-tilt" type="range" min="0" max="50" step="1" value="27" 
+                        class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-amber-400 focus:outline-none">
+                </div>
+
+                <!-- Pilihan Cahaya Gelang -->
+                <div class="flex flex-col gap-2">
+                    <span class="text-xs text-slate-400 font-display">Suasana Cahaya Kosmik</span>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="light-preset-btn text-xs py-1.5 px-2 rounded bg-amber-400/10 border border-amber-400/30 text-amber-200 font-display transition duration-200" data-color="#ffebc2">
+                            Matahari
+                        </button>
+                        <button class="light-preset-btn text-xs py-1.5 px-2 rounded bg-white/5 border border-white/5 hover:border-white/20 text-slate-300 font-display transition duration-200" data-color="#a5f3fc">
+                            Nebula Biru
+                        </button>
+                        <button class="light-preset-btn text-xs py-1.5 px-2 rounded bg-white/5 border border-white/5 hover:border-white/20 text-slate-300 font-display transition duration-200" data-color="#f472b6">
+                            Aurora Pink
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Butang Animasi Flyby -->
+                <button id="btn-flyby" class="w-full py-2.5 px-4 bg-gradient-to-r from-amber-500/20 to-orange-600/20 hover:from-amber-500/30 hover:to-orange-600/30 border border-amber-400/30 rounded-xl text-amber-200 font-semibold font-display tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-[0_0_15px_rgba(245,158,11,0.2)] active:scale-98">
+                    <i class="fa-solid fa-shuttle-space text-xs"></i> Lakukan Flyby Sinematik
+                </button>
+            </section>
+
+            <!-- Arahan Navigasi Tengah -->
+            <div class="hidden lg:flex flex-col items-center gap-1 mb-2 text-slate-400/40 text-xs tracking-widest font-display pointer-events-none">
+                <div class="flex items-center gap-2 animate-pulse">
+                    <i class="fa-solid fa-mouse"></i>
+                    <span>KLIK & SERET UNTUK MENEROKA SUDUT 3D</span>
+                </div>
+            </div>
+
+            <!-- Panel Kanan: Maklumat & Fakta Dinamik -->
+            <section id="panel-info" class="w-full md:w-96 glass-panel rounded-2xl p-5 pointer-events-auto flex flex-col gap-4 neon-shadow max-h-[50vh] md:max-h-[70vh] overflow-y-auto transform transition-all duration-300">
+                <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                    <h2 class="text-sm font-semibold tracking-wider text-amber-200/90 uppercase font-display flex items-center gap-2">
+                        <i class="fa-solid fa-satellite text-xs"></i> Arkib Data Cassini
+                    </h2>
+                    <span class="text-[10px] bg-amber-400/20 text-amber-300 px-2 py-0.5 rounded-full font-semibold font-display">AKTIF</span>
+                </div>
+
+                <!-- Navigasi Tab Maklumat -->
+                <div class="flex bg-white/5 p-1 rounded-lg">
+                    <button class="info-tab-btn flex-1 py-1 text-xs font-semibold rounded font-display transition duration-200 bg-amber-400/20 text-amber-200" data-tab="fakta">
+                        Fakta Am
+                    </button>
+                    <button class="info-tab-btn flex-1 py-1 text-xs font-semibold rounded font-display transition duration-200 text-slate-400 hover:text-slate-200" data-tab="gelang">
+                        Gelang
+                    </button>
+                    <button class="info-tab-btn flex-1 py-1 text-xs font-semibold rounded font-display transition duration-200 text-slate-400 hover:text-slate-200" data-tab="bulan">
+                        Bulan
+                    </button>
+                </div>
+
+                <!-- Kandungan Tab -->
+                <div id="tab-content" class="text-sm text-slate-300/90 leading-relaxed font-light min-h-[120px] transition-all duration-300">
+                    <!-- Kandungan lalai: Fakta Am -->
+                    <div class="flex flex-col gap-3">
+                        <p>Saturnus adalah planet keenam dari Matahari dan planet kedua terbesar dalam Sistem Suria kita. Merupakan gergasi gas yang sebahagian besarnya terdiri daripada hidrogen dan helium.</p>
+                        <div class="grid grid-cols-2 gap-3 mt-1 pt-3 border-t border-white/5 text-xs font-display">
+                            <div>
+                                <span class="block text-slate-500">Purata Jejari</span>
+                                <span class="text-amber-200 font-semibold">58,232 km</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-500">Jarak dari Matahari</span>
+                                <span class="text-amber-200 font-semibold">1.4 Bilion km</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-500">Tempoh Putaran</span>
+                                <span class="text-amber-200 font-semibold">10 Jam 33 Minit</span>
+                            </div>
+                            <div>
+                                <span class="block text-slate-500">Tempoh Orbit</span>
+                                <span class="text-amber-200 font-semibold">29 Tahun Bumi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+
+        <!-- Kaki Halaman (Footer) -->
+        <footer class="flex justify-between items-end w-full text-[10px] text-slate-400/40 tracking-widest font-display">
+            <span>SISTEM REKADEPAN KOSMOS v2.5</span>
+            <span class="hover:text-amber-300/40 transition duration-300 pointer-events-auto cursor-help" id="credits-trigger">DIPACU OLEH GRAPHICS 3D</span>
+        </footer>
     </div>
 
-    <!-- Baris 3: Footer -->
-    <footer class="footer">
-        <p>Copyright &copy; 2025 | Ibnu</p>
-    </footer>
+    <!-- Papan Pemuka Notifikasi / Kredit -->
+    <div id="credits-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="w-full max-w-sm glass-panel rounded-2xl p-6 text-center flex flex-col gap-4 neon-shadow">
+            <div class="w-16 h-16 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center mx-auto text-amber-300 text-2xl animate-pulse">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h3 class="text-lg font-bold font-display text-amber-200">Keindahan Kejuruteraan Angkasa</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+                Simulasi ini menggunakan matematik prosedural untuk mencipta semula keindahan visual Saturnus tanpa sebarang aset luar. Dibina dengan kecerdasan algoritma untuk prestasi optimum pada semua peranti.
+            </p>
+            <button id="credits-close" class="mt-2 py-2 px-4 bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/40 rounded-xl text-amber-200 text-xs font-semibold font-display transition duration-200">
+                Kembali ke Orbit
+            </button>
+        </div>
+    </div>
 
-    <script>
-        const tombolGaya = document.getElementById("tombolUbah");
-        const paragrafGaya = document.getElementById("paragrafTarget");
+    <!-- TIGA JS & Pustaka Berkaitan -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
-        tombolGaya.addEventListener("click", function () {
-            // Ubah Teksnya
-            paragrafGaya.innerHTML = "Teks dan gaya sudah diubah!";
-
-            // Ubah warnanya menjadi biru
-            paragrafGaya.style.color = "blue";
-
-            // Ubah ukuran font menjadi lebih besar
-            paragrafGaya.style.fontSize = "20px";
-
-            // Tambahkan latar belakang
-            paragrafGaya.style.backgroundColor = "#e0e0e0";
-            paragrafGaya.style.padding = "10px";
-        });
-
-        //Javascript untuk funsionalitas Galeri
-
-        // 1. pilih elemen gambar besar
-        const gambarBesar = document.getElementById("gambarBesar");
-
-        //2. pilih semua elemen gambar kecil (thumbnail)
-        const thumbnails = document.querySelectorAll(".thumbnail");
-
-        //3. Tambahkan event Listener untuk setiap gambar kecil
-        thumbnails.forEach(function (thumb) {
-            thumb.addEventListener("click", function () {
-                // Ambil URL gambar kecil yang diklik
-                const sumberGambarKecil = thumb.src;
-
-                // Ubah URL gambar besar agar sesuai dengan gambar kecil yang diklik
-                // Kita ganti bagian 'w=100' menjadi 'w=500' agar resolusinya lebih besar
-                gambarBesar.src = sumberGambarKecil.replace("w=100", "W=500");
-
-                // (Opsional) Ganti juga teks alt agar sesuai
-                gambarBesar.alt = thumb.alt;
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
